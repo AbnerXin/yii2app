@@ -10,7 +10,7 @@ return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', 'routeService'],
     'modules' => [],
     'components' => [
         'mongodb' => [
@@ -33,6 +33,32 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+       'urlManager' => [
+            'enablePrettyUrl' => true,
+            'enableStrictParsing' => true,
+            'showScriptName' => false,
+        ],
+        'routeService' => [
+            'class' => 'backend\components\RouteService',
+        ],
+        'response' => [
+            'format' => yii\web\Response::FORMAT_JSON,
+            'charset' => 'UTF-8',
+        ],
+        'request' => [
+            'csrfCookie' => [
+                'httpOnly' => true,
+                'secure'   => SECURE_COOKIE,
+            ],
+        ],
+        // 'urlManager' => [  
+        //     'enablePrettyUrl' => true,  
+        //     'enableStrictParsing' => true,  
+        //     'showScriptName' => false,  
+        //     'rules' => [  
+        //         ['class' => 'yii\rest\UrlRule', 'controller' => 'user'],
+        //     ],  
+        // ],
     ],
     'params' => $params,
 ];

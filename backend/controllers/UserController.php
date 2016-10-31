@@ -3,23 +3,26 @@
 namespace backend\controllers;
 
 use Yii;
-use yii\filters\AccessControl;
+use yii\mongodb\Query;
 use yii\web\Controller;
+use backend\models\User;
 use common\models\LoginForm;
 use yii\filters\VerbFilter;
-use backend\models\User;
-use yii\mongodb\Query;
+use yii\filters\AccessControl;
 
 
 
 class UserController extends Controller
 {
+    public function actionIndex()
+    {
+        return User::find([])->all();
+    }
+
     public function actionInsert() 
     {
         $user = new User();
         $nameList = $user->userInsert();
-        $response = Yii::$app->response;
-        $response->format = \yii\web\Response::FORMAT_JSON;
 
         return User::find([])->all();
     }
